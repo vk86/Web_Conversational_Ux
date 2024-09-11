@@ -11,3 +11,29 @@ userstory_prompt = (
     "*Positive Test Case - TestCaseName:<value>|TestObjective:<value>|Preconditions:<value>|TestSteps:<value>|ExpectedResults:<value>|Postconditions:<value>*\n"
     "*Negative Test Case - TestCaseName:<value>|TestObjective:<value>|Preconditions:<value>|TestSteps:<value>|ExpectedResults:<value>|Postconditions:<value>*"
 )
+
+
+testcase_output = generate_testcase(userstory)
+print("Test Case Output from LLM:", testcase_output)
+
+if "Positive Test Case" in testcase_output and "Negative Test Case" in testcase_output:
+    # Split the output into positive and negative test cases
+    positive_tc, negative_tc = testcase_output.split("Negative Test Case = ")
+    
+    # Extract the test case name and description for positive test case
+    positive_tc_name = positive_tc.split("TestCaseName:")[1].split("|")[0]
+    positive_tc_desc = positive_tc.split("TestObjective:")[1].split("|")[0]
+
+    # Extract the test case name and description for negative test case
+    negative_tc_name = negative_tc.split("TestCaseName:")[1].split("|")[0]
+    negative_tc_desc = negative_tc.split("TestObjective:")[1].split("|")[0]
+
+    print("Extracted Positive Test Case Name:", positive_tc_name)
+    print("Extracted Positive Test Case Description:", positive_tc_desc)
+    print("Extracted Negative Test Case Name:", negative_tc_name)
+    print("Extracted Negative Test Case Description:", negative_tc_desc)
+
+else:
+    # If the output does not contain both positive and negative test cases
+    testcase_output = "No Valid Output from LLM"
+    print(testcase_output)
