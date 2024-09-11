@@ -13,6 +13,38 @@ userstory_prompt = (
 )
 
 
+# Sample output from the LLM
+testcase_output = """
+Positive Test Case = TestCaseName:ValidSSOLogin|TestObjective:To verify that a user can successfully log in using Single Sign-On (SSO) and access the application without additional logins.|Preconditions:1. User has an active corporate account with valid SSO credentials. 2. User is connected to a network with normal conditions.|TestSteps:1. Open the application login page. 2. Click on the "Log in with SSO" option. 3. Enter valid credentials on the SSO provider's authentication page. 4. Click "Log In" or "Submit."|ExpectedResults:1. The application login page displays an option for "Log in with SSO." 2. The user is redirected to the SSO provider’s authentication page. 3. The SSO provider accepts the corporate credentials. 4. The user is redirected back to the application and gains access without additional login prompts.|Postconditions:User is logged into the application, and the session is maintained across multiple integrated services.|
+
+Negative Test Case = TestCaseName:InvalidSSOLogin|TestObjective:To validate that an appropriate error message is displayed and the user is unable to log in with invalid corporate credentials.|Preconditions:1. User has an active corporate account but uses invalid SSO credentials. 2. User is connected to a network with normal conditions.|TestSteps:1. Open the application login page. 2. Click on the "Log in with SSO" option. 3. Enter invalid corporate credentials on the SSO provider's authentication page. 4. Click "Log In" or "Submit."|ExpectedResults:An error message is displayed.|Postconditions:User is unable to log in.
+"""
+
+# Split the test case output into positive and negative test cases
+positive_tc, negative_tc = testcase_output.split("Negative Test Case = ")
+
+# Extract details from the positive test case
+def extract_test_case_details(tc):
+    # Split based on identifiable separators
+    details = {}
+    details['name'] = tc.split("TestCaseName:")[1].split("|")[0]
+    details['description'] = tc.split("TestObjective:")[1].split("|")[0]
+    return details
+
+# Extract details for positive and negative test cases
+positive_details = extract_test_case_details(positive_tc)
+negative_details = extract_test_case_details(negative_tc)
+
+# Display extracted details
+print("Positive Test Case Details:")
+print(f"Name: {positive_details['name']}")
+print(f"Description: {positive_details['description']}")
+
+print("\nNegative Test Case Details:")
+print(f"Name: {negative_details['name']}")
+print(f"Description: {negative_details['description']}")
+v
+
 testcase_output = generate_testcase(userstory)
 print("Test Case Output from LLM:", testcase_output)
 
