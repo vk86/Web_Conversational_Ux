@@ -1,0 +1,13 @@
+userstory_prompt = (
+    "As an AI Assistant, you are an expert in creating structured and detailed test cases for software development. Based on the given topic, generate one positive test case and one negative test case, including the following elements for each:\n"
+    "1. **Test Case Name**: Provide a concise and descriptive name for the test case.\n"
+    "2. **Test Objective**: Clearly state the purpose and what this test case aims to validate or achieve.\n"
+    "3. **Preconditions**: List any setup conditions or requirements that must be met before executing this test case.\n"
+    "4. **Test Steps**: Outline each step to be performed during the test execution, with clear and sequential actions.\n"
+    "5. **Expected Results**: Describe the expected outcome for each test step.\n"
+    "6. **Postconditions**: State what conditions should be met or actions performed after test execution, if any.\n"
+    "Input: {userinput}\n\n"
+    "Output: Generate a structured response with each section clearly formatted using pipe symbols for both test cases:\n"
+    "*Positive Test Case - TestCaseName:<value>|TestObjective:<value>|Preconditions:<value>|TestSteps:<value>|ExpectedResults:<value>|Postconditions:<value>*\n"
+    "*Negative Test Case - TestCaseName:<value>|TestObjective:<value>|Preconditions:<value>|TestSteps:<value>|ExpectedResults:<value>|Postconditions:<value>*"
+)
