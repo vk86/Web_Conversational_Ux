@@ -1,0 +1,104 @@
+
+.resizable-box {
+  position: relative; /* Ensure positioning of child elements */
+  padding: 15px;
+  background-color: #abd4f8;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  text-align: left; /* Keep other content left-aligned */
+  resize: both;
+  overflow: auto;
+  min-width: 150px;
+  min-height: 100px;
+}
+
+.id-box-wrapper {
+  display: flex; /* Flexbox to center the id-box */
+  justify-content: center; /* Center horizontally */
+  margin-bottom: 10px; /* Add spacing if needed */
+}
+
+.id-box {
+  font-size: 12px;
+  z-index: 20;
+  font-weight: 500;
+  color: #59606d; /* Muted dark color */
+  background-color: #f3f4f6; /* Slightly darker background */
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db; /* Soft border for the id box */
+  display: inline-block;
+}
+
+.poster-title,
+.poster-description {
+  text-align: left; /* Ensure title and description remain left-aligned */
+  margin: 5px 0;
+}
+
+  
+ 
+  
+  
+  .reactflow-wrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start; /* Aligns the flow horizontally */
+   /* background-color: #291919; */
+  }
+ 
+
+.react-flow__edge-path{
+    stroke-width:0.25px;          /* Increase thickness */
+    stroke: #000000;            /* Set stroke color */
+    marker-end: url(#arrow) ; /* Attach the arrow */
+    z-index: 9999;                /* Ensure it's above other elements */
+    fill: none;                 /* No fill for the path */
+    stroke-linecap: round;      /* Smooth edges */
+  }
+
+  .react-flow__edge {
+    z-index: 9999;  /* Higher z-index for the whole edge container */
+}
+
+
+
+.react-flow__node.react-flow__node-default {
+  background-color: #f0f0f0;
+  border: 2px solid transparent; /* Transparent border in default state */
+  border-radius: 5px; /* Add rounded corners */
+  padding: 10px;
+  transition: border-color 0.2s ease, transform 0.2s ease; /* Smooth transition on hover */
+}
+
+/* Hover state: Border becomes visible */
+.react-flow__node.react-flow__node-default:hover {
+  border-color: #000080; /* Blue border on hover */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Add shadow for a hover effect */
+}
+
+/* Node wrapper styling */
+.node-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title styling */
+.node-title {
+  background-color: #1E3A8A; /* Navy blue */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px; /* Adds spacing between title and resizable box */
+}
+
+/* Styling for MiniMap in React Flow */
+.reactflow-wrapper {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+}
