@@ -1,0 +1,69 @@
+import React, { useState, useEffect } from 'react';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+
+const KnowledgeGraph = () => {
+  const [userStories, setUserStories] = useState([]); // List of user stories from API
+  const [selectedUserStory, setSelectedUserStory] = useState(''); // Selected user story ID
+  const [storyDetails, setStoryDetails] = useState(null); // Selected user story details
+
+  // Fetch the list of user stories when the component loads
+  useEffect(() => {
+    const fetchUserStories = async () => {
+      try {
+        const response = await fetch('https://api.example.com/userstories'); // Your API endpoint to fetch user stories
+        const data = await response.json();
+        setUserStories(data); // Store the fetched user stories
+      } catch (error) {
+        console.error('Error fetching user stories:', error);
+      }
+    };
+
+    fetchUserStories();
+  }, []);
+
+  // Fetch details of the selected user story
+  const fetchUserStoryDetails = async (userStoryId) => {
+    try {
+      const response = await fetch(`https://api.example.com/userstory/${userStoryId}`); // Your API endpoint to fetch story details
+      const data = await response.json();
+      setStoryDetails(data); // Store the selected story details
+    } catch (error) {
+      console.error('Error fetching user story details:', error);
+    }
+  };
+
+  // Handle dropdown selection
+  const handleUserStoryChange = (userStoryId) => {
+    setSelectedUserStory(userStoryId); // Set the selected user story ID
+    fetchUserStoryDetails(userStoryId); // Fetch the details of the selected user story
+  };
+
+  return (
+    <div className="knowledge-graph">
+      {/* Bootstrap Dropdown for User Stories */}
+      <DropdownButton
+        id="userStoryDropdown"
+        title={selectedUserStory || 'Select a User Story'} // Show selected story or default
+        onSelect={handleUserStoryChange}
+      >
+        {userStories.map((story) => (
+          <Dropdown.Item key={story._id} eventKey={story._id}>
+            {story.title} {/* Populate dropdown with user story titles */}
+          </Dropdown.Item>
+        ))}
+      </DropdownButton>
+
+      {/* Display the selected user story details */}
+      {storyDetails && (
+        <div className="story-details">
+          <h3>Story Details</h3>
+          <p>ID: {storyDetails._id}</p>
+          <p>Title: {storyDetails.title}</p>
+          <p>Description: {storyDetails.description}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default KnowledgeGraph;
